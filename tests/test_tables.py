@@ -296,9 +296,9 @@ async def test_table_updater_update_mode_view(table_updater: TableUpdater):
     assert (
         not table_updater.client.send.called  # type: ignore
     ), "client send method was unexpectedly called"
-    assert (
-        not table_updater.mode_record_info.record.set.called
-    ), "record set method was unexpectedly called"
+    assert not table_updater.mode_record_info.record.set.called, (
+        "record set method was unexpectedly called"
+    )
 
 
 async def test_table_updater_update_mode_submit(

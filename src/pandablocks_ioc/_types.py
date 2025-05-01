@@ -73,9 +73,9 @@ def device_and_record_to_panda_name(field_name: EpicsName) -> PandAName:
 
 def check_num_labels(labels: list[str], record_name: str):
     """Check that the number of labels can fit into an mbbi/mbbo record"""
-    assert (
-        len(labels) <= 16
-    ), f"Too many labels ({len(labels)}) to create record {record_name}"
+    assert len(labels) <= 16, (
+        f"Too many labels ({len(labels)}) to create record {record_name}"
+    )
 
 
 def trim_string_value(value: str, record_name: str) -> str:

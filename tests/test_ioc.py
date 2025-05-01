@@ -629,12 +629,12 @@ def test_create_record_info_value_error(
     num_sevr = file_contents.count("SEVR")
     num_stat = file_contents.count("STAT")
 
-    assert (
-        num_sevr == 2
-    ), f"SEVR not found twice in record file contents: {file_contents}"
-    assert (
-        num_stat == 2
-    ), f"STAT not found twice in record file contents: {file_contents}"
+    assert num_sevr == 2, (
+        f"SEVR not found twice in record file contents: {file_contents}"
+    )
+    assert num_stat == 2, (
+        f"STAT not found twice in record file contents: {file_contents}"
+    )
 
 
 @patch("pandablocks_ioc.ioc.db_put_field")

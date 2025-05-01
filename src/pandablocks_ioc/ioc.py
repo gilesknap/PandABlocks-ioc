@@ -205,8 +205,8 @@ def get_panda_versions(idn_repsonse: str) -> dict[EpicsName, str]:
     else:
         for firmware_name in firmware_versions:
             pattern = re.compile(
-                rf'{re.escape(firmware_name)}:\s*([^:]+?)(?=\s*\b(?: \
-                {"|".join(map(re.escape, firmware_versions))}):|$)'
+                rf"{re.escape(firmware_name)}:\s*([^:]+?)(?=\s*\b(?: \
+                {'|'.join(map(re.escape, firmware_versions))}):|$)"
             )
             if match := pattern.search(idn_repsonse):
                 firmware_versions[firmware_name] = match.group(1).strip()
@@ -402,9 +402,9 @@ class _RecordUpdater:
             # If this is an enum record, retrieve the string value
             val: Optional[str]
             if self.labels:
-                assert int(new_val) < len(
-                    self.labels
-                ), f"Invalid label index {new_val}, only {len(self.labels)} labels"
+                assert int(new_val) < len(self.labels), (
+                    f"Invalid label index {new_val}, only {len(self.labels)} labels"
+                )
                 val = self.labels[int(new_val)]
             elif new_val is not None:
                 # Necessary to wrap the data_type_func call in str() as we must
@@ -653,9 +653,9 @@ class IocRecordFactory:
             labels = []
 
         extra_kwargs: dict[str, Any] = {}
-        assert (
-            record_creation_func in self._builder_methods
-        ), "Unrecognised record creation function passed to _create_record_info"
+        assert record_creation_func in self._builder_methods, (
+            "Unrecognised record creation function passed to _create_record_info"
+        )
 
         if (
             record_creation_func == builder.mbbIn

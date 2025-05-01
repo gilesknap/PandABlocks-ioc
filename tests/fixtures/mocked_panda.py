@@ -331,9 +331,9 @@ def caplog_workaround():
         while not logger_queue.empty():
             log_record: logging.LogRecord = logger_queue.get()
             # Make mypy happy
-            assert (
-                log_record.args
-            ), f"args were none, how did that happen?\nRecord: {log_record}\n"
+            assert log_record.args, (
+                f"args were none, how did that happen?\nRecord: {log_record}\n"
+            )
             f"Args: {log_record.args}"
             logger._log(
                 level=log_record.levelno,
@@ -391,9 +391,9 @@ def create_subprocess_ioc_and_responses(
                 # there to ensure the test doesn't hang indefinitely during cleanup
 
     # We expect all tests to pass without warnings (or worse) logged.
-    assert (
-        len(caplog.messages) == 0
-    ), f"At least one warning/error/exception logged during test: {caplog.records}"
+    assert len(caplog.messages) == 0, (
+        f"At least one warning/error/exception logged during test: {caplog.records}"
+    )
 
 
 def changes_iterator_wrapper(values=None, multiline_values=None):
